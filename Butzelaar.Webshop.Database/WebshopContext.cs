@@ -39,8 +39,7 @@ namespace Butzelaar.Webshop.Database
         /// <summary>
         /// Initializes a new instance of the <see cref="WebshopContext"/> class.
         /// </summary>
-        public WebshopContext(string username)
-            : base("Name=Webshop")
+        public WebshopContext(string username) : base("Name=Webshop")
         {
             Username = username;
         }
@@ -177,6 +176,7 @@ namespace Butzelaar.Webshop.Database
 
         #endregion
 
+        #region Collections
 
         /// <summary>
         /// Gets or sets the menus.
@@ -185,5 +185,7 @@ namespace Butzelaar.Webshop.Database
         /// The menus.
         /// </value>
         public DbSet<Menu> Menus { get; set; }
+
+        #endregion
     }
 }
