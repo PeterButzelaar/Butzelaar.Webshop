@@ -41,6 +41,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Butzelaar.Webshop.Database\Butzelaar.Webshop.Database.csproj">
+      <Project>{1d5a1f1a-0b03-45a1-9c17-88809533f5c1}</Project>
+      <Name>Butzelaar.Webshop.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Butzelaar.Webshop.Model\Butzelaar.Webshop.Model.csproj">
+      <Project>{c3d69b55-cb5c-482a-92bc-9c79a9d75e7a}</Project>
+      <Name>Butzelaar.Webshop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
