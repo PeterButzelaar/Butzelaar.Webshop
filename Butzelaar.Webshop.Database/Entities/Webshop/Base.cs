@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Butzelaar.Webshop.Database.Entities
+namespace Butzelaar.Webshop.Database.Entities.Webshop
 {
     /// <summary>
     /// Base class for entities

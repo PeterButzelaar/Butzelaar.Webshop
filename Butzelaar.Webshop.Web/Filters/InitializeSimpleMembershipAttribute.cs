@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
-using Butzelaar.Webshop.Web.Models;
 
 namespace Butzelaar.Webshop.Web.Filters
 {
@@ -25,18 +22,9 @@ namespace Butzelaar.Webshop.Web.Filters
         {
             public SimpleMembershipInitializer()
             {
-                Database.SetInitializer<UsersContext>(null);
-
                 try
                 {
-                    using (var context = new UsersContext())
-                    {
-                        if (!context.Database.Exists())
-                        {
-                            // Create the SimpleMembership database without Entity Framework migration schema
-                            ((IObjectContextAdapter)context).ObjectContext.CreateDatabase();
-                        }
-                    }
+                    // TODO: om database te initialiseren, doe een random get op de repository
 
                     WebSecurity.InitializeDatabaseConnection("SecurityConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }

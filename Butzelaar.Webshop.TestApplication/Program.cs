@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Butzelaar.Webshop.Database;
-using Butzelaar.Webshop.Database.Entities;
+using Butzelaar.Webshop.Database.Entities.Webshop;
 
 namespace Butzelaar.Webshop.TestApplication
 {

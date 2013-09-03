@@ -1,10 +1,10 @@
-﻿using Butzelaar.Webshop.Web.Filters;
-using Butzelaar.Webshop.Web.Models;
-using Microsoft.Web.WebPages.OAuth;
-using System;
+﻿using System;
 using System.Transactions;
 using System.Web.Mvc;
 using System.Web.Security;
+using Butzelaar.Webshop.Web.Filters;
+using Butzelaar.Webshop.Web.Models;
+using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 
 namespace Butzelaar.Webshop.Web.Controllers

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using Butzelaar.Webshop.Web.Models;
-
-namespace Butzelaar.Webshop.Web
+﻿namespace Butzelaar.Webshop.Web
 {
     public static class AuthConfig
     {

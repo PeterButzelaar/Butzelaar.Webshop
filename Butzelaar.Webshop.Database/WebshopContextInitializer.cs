@@ -1,17 +1,12 @@
-﻿using Butzelaar.Webshop.Database.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using Butzelaar.Webshop.Database.Entities.Webshop;
 
 namespace Butzelaar.Webshop.Database
 {
     /// <summary>
     /// Initializer for the webshop context
     /// </summary>
-    public class WebshopContextInitializer : DropCreateDatabaseIfModelChanges<WebshopContext>
+    public class WebshopContextInitializer : CreateDatabaseIfNotExists<WebshopContext>
     {
         /// <summary>
         /// Seeds the specified context.

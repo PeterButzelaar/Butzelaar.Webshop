@@ -49,9 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Base.cs" />
-    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Entities\Security\UserProfile.cs" />
+    <Compile Include="Entities\Webshop\Base.cs" />
+    <Compile Include="Entities\Webshop\Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SecurityContext.cs" />
+    <Compile Include="SecurityContextInitializer.cs" />
     <Compile Include="WebshopContext.cs" />
     <Compile Include="WebshopContextInitializer.cs" />
   </ItemGroup>

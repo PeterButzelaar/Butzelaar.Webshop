@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.Entity;
-using System.Linq;
 using System.Data.Entity.Infrastructure;
-using Butzelaar.Webshop.Database.Entities;
+using System.Linq;
+using Butzelaar.Webshop.Database.Entities.Webshop;
 
 namespace Butzelaar.Webshop.Database
 {
@@ -39,7 +39,8 @@ namespace Butzelaar.Webshop.Database
         /// <summary>
         /// Initializes a new instance of the <see cref="WebshopContext"/> class.
         /// </summary>
-        public WebshopContext(string username) : base("Name=Webshop")
+        public WebshopContext(string username)
+            : base("Name=Webshop")
         {
             Username = username;
         }
@@ -83,6 +84,11 @@ namespace Butzelaar.Webshop.Database
             #endregion
         }
 
+        /// <summary>
+        /// Sets the default model properties.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="modelBuilder">The model builder.</param>
         private static void SetDefaultModelProperties<T>(DbModelBuilder modelBuilder) where T : Base
         {
             modelBuilder.Entity<Menu>()
@@ -169,9 +175,11 @@ namespace Butzelaar.Webshop.Database
         /// <returns></returns>
         private IEnumerable<DbEntityEntry<T>> GetChangedEntries<T>() where T : class
         {
-            return ChangeTracker
-                .Entries<T>()
-                .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+            return
+                (from e in ChangeTracker.Entries<T>()
+                 where e.State == EntityState.Added || e.State == EntityState.Modified
+                 select e)
+                ;
         }
 
         #endregion
