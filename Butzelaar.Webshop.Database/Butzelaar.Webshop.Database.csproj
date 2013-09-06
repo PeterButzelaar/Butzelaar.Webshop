@@ -34,6 +34,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Butzelaar.Generic.Logging">
+      <HintPath>..\References\Butzelaar.Generic.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
@@ -52,6 +55,7 @@
     <Compile Include="Entities\Security\UserProfile.cs" />
     <Compile Include="Entities\Webshop\Base.cs" />
     <Compile Include="Entities\Webshop\Menu.cs" />
+    <Compile Include="Entities\Webshop\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityContext.cs" />
     <Compile Include="SecurityContextInitializer.cs" />

@@ -5,7 +5,9 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using Butzelaar.Generic.Logging.Enumeration;
 using Butzelaar.Webshop.Database.Entities.Webshop;
+using Butzelaar.Generic.Logging;
 
 namespace Butzelaar.Webshop.Database
 {
@@ -66,22 +68,45 @@ namespace Butzelaar.Webshop.Database
         /// </remarks>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            #region Menu
+            try
+            {
+                #region Menu
 
-            modelBuilder.Entity<Menu>()
-                        .Map(m => m.ToTable("Menu"))
-                        .HasEntitySetName("Menus")
-                        .HasKey(m => m.Id)
-                        .HasOptional(m => m.Parent)
-                        .WithMany(m => m.Children)
-                        .Map(c => c.MapKey("ParentId"));
-            modelBuilder.Entity<Menu>()
-                        .Property(m => m.Name)
-                        .IsVariableLength()
-                        .HasMaxLength(50);
-            SetDefaultModelProperties<Menu>(modelBuilder);
+                modelBuilder.Entity<Menu>()
+                            .Map(m => m.ToTable("Menu"))
+                            .HasEntitySetName("Menus")
+                            .HasOptional(m => m.Parent)
+                            .WithMany(m => m.Children)
+                            .Map(c => c.MapKey("ParentId"));
+                modelBuilder.Entity<Menu>()
+                            .Property(m => m.Name)
+                            .IsVariableLength()
+                            .HasMaxLength(50);
+                SetDefaultModelProperties<Menu>(modelBuilder);
 
-            #endregion
+                Logger.Log(Level.Debug, "Mapped Menu class");
+
+                #endregion
+
+                #region User
+
+                modelBuilder.Entity<User>()
+                            .Map(u => u.ToTable("User"))
+                            .HasEntitySetName("Users")
+                            .Property(u => u.FirstName)
+                            .IsVariableLength()
+                            .IsRequired()
+                            .HasMaxLength(50);
+                SetDefaultModelProperties<User>(modelBuilder);
+
+                Logger.Log(Level.Debug, "Mapped User class");
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Level.Fatal, "Error while creating models", ex.Message, ex);
+            }
         }
 
         /// <summary>
@@ -91,7 +116,8 @@ namespace Butzelaar.Webshop.Database
         /// <param name="modelBuilder">The model builder.</param>
         private static void SetDefaultModelProperties<T>(DbModelBuilder modelBuilder) where T : Base
         {
-            modelBuilder.Entity<Menu>()
+            modelBuilder.Entity<T>()
+                        .HasKey(m => m.Id)
                         .Property(m => m.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             modelBuilder.Entity<T>()
