@@ -14,14 +14,17 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            using (var context = new WebshopContext("datbenik!"))
+            using (var context = new LoggingContext())
             {
-                var menus = context.Menus.ToList();
+                var logs = from log in context.Logs
+                           where log.Level == "DEBUG"
+                           orderby log.Date descending
+                           select log;
 
-                //var menu = new Menu { Name = "hallo! " };
-
-                //context.Menus.Add(menu);
-                //context.SaveChanges();
+                foreach (var log in logs)
+                {
+                    Console.WriteLine(log.StackTrace);
+                }
             }
 
             var list = new List<Thread>();
@@ -30,9 +33,7 @@ namespace Butzelaar.Webshop.TestApplication
             {
                 list.Add(new Thread(new MyThread(i).Run));
             }
-            list.ForEach(t => t.Start());
-            Console.WriteLine("Klaar!");
-            Console.ReadKey();
+            //list.ForEach(t => t.Start());
         }
     }
 

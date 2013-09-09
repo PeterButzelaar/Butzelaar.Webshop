@@ -52,6 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Logging\Log.cs" />
+    <Compile Include="LoggingContextInitializer.cs" />
+    <Compile Include="LoggingContext.cs" />
     <Compile Include="Entities\Security\UserProfile.cs" />
     <Compile Include="Entities\Webshop\Base.cs" />
     <Compile Include="Entities\Webshop\Menu.cs" />
