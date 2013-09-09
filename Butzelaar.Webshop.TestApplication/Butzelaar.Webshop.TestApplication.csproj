@@ -71,6 +71,10 @@
       <Project>{1d5a1f1a-0b03-45a1-9c17-88809533f5c1}</Project>
       <Name>Butzelaar.Webshop.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Butzelaar.Webshop.Repository\Butzelaar.Webshop.Repository.csproj">
+      <Project>{5CCDA3BF-4637-4CBF-B603-EE95FF66AF23}</Project>
+      <Name>Butzelaar.Webshop.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
