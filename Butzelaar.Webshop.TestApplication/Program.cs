@@ -15,18 +15,38 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            /*using (var context = new LoggingContext())
-            {
-                var logs = from log in context.Logs
-                           where log.Level == "DEBUG"
-                           orderby log.Date descending
-                           select log;
+            Menu parent = null;
 
-                foreach (var log in logs)
+            using (var context = new WebshopContext())
+            {
+                parent = context.Menus.FirstOrDefault(m => m.Id == new Guid("A1938473-2CCB-4A24-8E55-C503B1FCD5F6"));
+            }
+            using (var scope = new TransactionScope())
+            {
+                using (var context = new WebshopContext())
                 {
-                    Console.WriteLine(log.StackTrace);
+                    parent = context.Menus.FirstOrDefault(m => m.Id == new Guid("A1938473-2CCB-4A24-8E55-C503B1FCD5F6"));
+
+                    context.Menus.Add(new Menu
+                        {
+                            Name = "test1",
+                            Parent = parent
+                        });
+
+                    context.SaveChanges();
                 }
-            }*/
+
+                /*using (var context = new WebshopContext())
+                {
+                context.Menus.Add(new Menu
+                        {
+                            Name = "test2"
+                        });
+
+                    context.SaveChanges();
+                }*/
+                scope.Complete();
+            }
 
             var list = new List<Thread>();
 
@@ -34,7 +54,7 @@ namespace Butzelaar.Webshop.TestApplication
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Logger.Log(Level.Fatal, "meh");
+                    //Logger.Log(Level.Fatal, "meh");
                     //list.Add(new Thread(new MyThread(i).Run));
                 }
 

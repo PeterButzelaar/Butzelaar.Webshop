@@ -13,34 +13,34 @@ namespace Butzelaar.Webshop.Database.Entities.Webshop
         /// <value>
         /// The id.
         /// </value>
-        public Guid Id { get; set; }
+        public Guid Id { get; internal set; }
         /// <summary>
         /// Gets the create date.
         /// </summary>
         /// <value>
         /// The create date.
         /// </value>
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; internal set; }
         /// <summary>
         /// Gets or sets the created by.
         /// </summary>
         /// <value>
         /// The created by.
         /// </value>
-        public string CreatedBy { get; set; }
+        public string CreatedBy { get; internal set; }
         /// <summary>
         /// Gets the change date.
         /// </summary>
         /// <value>
         /// The change date.
         /// </value>
-        public DateTime ModifiedDate { get; set; }
+        public DateTime ModifiedDate { get; internal set; }
         /// <summary>
         /// Gets or sets the changed by.
         /// </summary>
         /// <value>
         /// The changed by.
         /// </value>
-        public string ModifiedBy { get; set; }
+        public string ModifiedBy { get; internal set; }
     }
 }
