@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Transactions;
 using Butzelaar.Generic.Logging;
 using Butzelaar.Generic.Logging.Enumeration;
 using Butzelaar.Webshop.Database;
@@ -14,7 +15,7 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            using (var context = new LoggingContext())
+            /*using (var context = new LoggingContext())
             {
                 var logs = from log in context.Logs
                            where log.Level == "DEBUG"
@@ -25,13 +26,19 @@ namespace Butzelaar.Webshop.TestApplication
                 {
                     Console.WriteLine(log.StackTrace);
                 }
-            }
+            }*/
 
             var list = new List<Thread>();
 
-            for (int i = 0; i < 10; i++)
+            using (var scope = new TransactionScope())
             {
-                list.Add(new Thread(new MyThread(i).Run));
+                for (int i = 0; i < 10; i++)
+                {
+                    Logger.Log(Level.Fatal, "meh");
+                    //list.Add(new Thread(new MyThread(i).Run));
+                }
+
+                scope.Complete();
             }
             //list.ForEach(t => t.Start());
         }
