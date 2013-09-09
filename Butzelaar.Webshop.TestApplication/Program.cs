@@ -14,15 +14,15 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            using (var context = new WebshopContext("datbenik!"))
-            {
-                var menus = context.Menus.ToList();
+            //using (var context = new WebshopContext("datbenik!"))
+            //{
+                //var menus = context.Menus.ToList();
 
                 //var menu = new Menu { Name = "hallo! " };
 
                 //context.Menus.Add(menu);
                 //context.SaveChanges();
-            }
+            //}
 
             var list = new List<Thread>();
 
