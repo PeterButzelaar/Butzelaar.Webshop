@@ -26,7 +26,7 @@ namespace Butzelaar.Webshop.Web.Filters
                 {
                     // TODO: om database te initialiseren, doe een random get op de repository
 
-                    WebSecurity.InitializeDatabaseConnection("SecurityConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("Security", "UserProfile", "UserId", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

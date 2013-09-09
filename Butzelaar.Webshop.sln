@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butzelaar.Webshop.Database"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butzelaar.Webshop.TestApplication", "Butzelaar.Webshop.TestApplication\Butzelaar.Webshop.TestApplication.csproj", "{DD848BC4-D470-47FB-B8F1-FB3606830138}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butzelaar.Webshop.Model", "Butzelaar.Webshop.Model\Butzelaar.Webshop.Model.csproj", "{C3D69B55-CB5C-482A-92BC-9C79A9D75E7A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +37,6 @@ Global
 		{DD848BC4-D470-47FB-B8F1-FB3606830138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD848BC4-D470-47FB-B8F1-FB3606830138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD848BC4-D470-47FB-B8F1-FB3606830138}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3D69B55-CB5C-482A-92BC-9C79A9D75E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3D69B55-CB5C-482A-92BC-9C79A9D75E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3D69B55-CB5C-482A-92BC-9C79A9D75E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3D69B55-CB5C-482A-92BC-9C79A9D75E7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

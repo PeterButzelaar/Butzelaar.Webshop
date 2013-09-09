@@ -77,7 +77,7 @@ namespace Butzelaar.Webshop.Database
                             .HasEntitySetName("Menus")
                             .HasOptional(m => m.Parent)
                             .WithMany(m => m.Children)
-                            .Map(c => c.MapKey("ParentId"));
+                            .HasForeignKey(m => m.ParentId);
                 modelBuilder.Entity<Menu>()
                             .Property(m => m.Name)
                             .IsVariableLength()

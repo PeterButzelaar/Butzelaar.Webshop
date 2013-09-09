@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Transactions;
 using Butzelaar.Generic.Logging;
 using Butzelaar.Generic.Logging.Enumeration;
 using Butzelaar.Webshop.Database;
 using Butzelaar.Webshop.Database.Entities.Webshop;
 using System.Threading;
+using Butzelaar.Webshop.Repository.Webshop;
 
 namespace Butzelaar.Webshop.TestApplication
 {
@@ -14,40 +17,17 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            //using (var context = new WebshopContext("datbenik!"))
-            //{
-                //var menus = context.Menus.ToList();
+            var unitOfWork = new UnitOfWork("Peter");
 
-                //var menu = new Menu { Name = "hallo! " };
-
-                //context.Menus.Add(menu);
-                //context.SaveChanges();
-            //}
-
-            var list = new List<Thread>();
-
-            for (int i = 0; i < 10; i++)
+            try
             {
-                list.Add(new Thread(new MyThread(i).Run));
+                var menu = unitOfWork.MenuRepository.Get(m => m.Name.Contains("2"), m2 => m2.OrderBy(m3 => m3.Name),
+                                                         "Parent");
             }
-            list.ForEach(t => t.Start());
-            Console.WriteLine("Klaar!");
-            Console.ReadKey();
-        }
-    }
-
-    class MyThread
-    {
-        private int _number;
-
-        public MyThread(int number)
-        {
-            _number = number;
-        }
-
-        public void Run()
-        {
-            Logger.Log(Level.Debug, _number.ToString(CultureInfo.InvariantCulture), _number.ToString(CultureInfo.InvariantCulture));
+            finally
+            {
+                unitOfWork.Dispose();
+            }
         }
     }
 }

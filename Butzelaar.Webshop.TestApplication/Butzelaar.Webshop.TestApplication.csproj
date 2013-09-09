@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\Butzelaar.Webshop.Database\Butzelaar.Webshop.Database.csproj">
       <Project>{1d5a1f1a-0b03-45a1-9c17-88809533f5c1}</Project>
       <Name>Butzelaar.Webshop.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Butzelaar.Webshop.Repository\Butzelaar.Webshop.Repository.csproj">
+      <Project>{5CCDA3BF-4637-4CBF-B603-EE95FF66AF23}</Project>
+      <Name>Butzelaar.Webshop.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
