@@ -10,7 +10,7 @@ namespace Butzelaar.Webshop.Service.Logging
     /// <summary>
     /// ILoggingService interface
     /// </summary>
-    public interface ILoggingService : IDisposable
+    public interface ILoggingService
     {
         /// <summary>
         /// Gets the log by unique identifier.

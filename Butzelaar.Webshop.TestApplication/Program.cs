@@ -1,7 +1,8 @@
 ﻿using System;
-using Butzelaar.Generic.Logging;
-using Butzelaar.Generic.Logging.Enumeration;
-using Butzelaar.Webshop.Service.Logging;
+using System.Globalization;
+using System.Threading;
+using Butzelaar.Webshop.Common.Resources;
+using Butzelaar.Webshop.Service;
 
 namespace Butzelaar.Webshop.TestApplication
 {
@@ -9,9 +10,20 @@ namespace Butzelaar.Webshop.TestApplication
     {
         static void Main(string[] args)
         {
-            using (ILoggingService logService = new LoggingService())
+            
+
+            using (var uow = new UnitOfWork())
             {
-                var logs = logService.GetLogsOrderedByDateDescending();
+                var logs = uow.LoggingService.GetLogsOrderedByDateDescending();
+                foreach (var log in logs)
+                {
+                    Console.WriteLine(log.Date);
+                }
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("nl-NL");
+
+                Console.WriteLine(ModelResource.Date);
+                Console.ReadKey();
             }
         }
     }

@@ -10,7 +10,7 @@ namespace Butzelaar.Webshop.Repository.Webshop
     /// Generic repository for the Webshop context
     /// </summary>
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
-    public interface IGenericRepository<TEntity> : IDisposable where TEntity : Base
+    public interface IGenericRepository<TEntity> where TEntity : Base
     {
         /// <summary>
         /// Gets the list.

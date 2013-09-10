@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Butzelaar.Webshop.Database;
 using Butzelaar.Webshop.Model.Logging;
 using Butzelaar.Webshop.Repository.Logging;
 
@@ -13,14 +14,27 @@ namespace Butzelaar.Webshop.Service.Logging
     {
         #region Fields
 
+        private readonly LoggingContext _context;
+
         /// <summary>
-        /// The _disposed
+        /// The _logging repository
         /// </summary>
-        private bool _disposed;
+        private ILogRepository _loggingRepository;
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
-        /// The _unit of work
+        /// Gets or sets the logging repository.
         /// </summary>
-        private readonly UnitOfWork _unitOfWork;
+        /// <value>
+        /// The logging repository.
+        /// </value>
+        private ILogRepository LoggingRepository
+        {
+            get { return _loggingRepository ?? (_loggingRepository = new LogRepository(_context)); }
+        }
 
         #endregion
 
@@ -29,38 +43,9 @@ namespace Butzelaar.Webshop.Service.Logging
         /// <summary>
         /// Initializes a new instance of the <see cref="LoggingService"/> class.
         /// </summary>
-        public LoggingService()
+        public LoggingService(LoggingContext context)
         {
-            _unitOfWork = new UnitOfWork();
-        }
-
-        #endregion
-
-        #region Dispose
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _unitOfWork.Dispose();
-                }
-            }
-            _disposed = true;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _context = context;
         }
 
         #endregion
@@ -74,7 +59,7 @@ namespace Butzelaar.Webshop.Service.Logging
         /// <returns></returns>
         public LogModel GetLogById(Guid id)
         {
-            var entity = _unitOfWork.LoggingRepository.GetById(id);
+            var entity = LoggingRepository.GetById(id);
             return new LogModel(entity.Id,
                     entity.Date,
                     entity.Details,
@@ -95,7 +80,7 @@ namespace Butzelaar.Webshop.Service.Logging
         /// <exception cref="System.NotImplementedException"></exception>
         public IEnumerable<LogModel> GetLogsOrderedByDateDescending()
         {
-            var entities = _unitOfWork.LoggingRepository.Get().OrderByDescending(l => l.Date);
+            var entities = LoggingRepository.Get().OrderByDescending(l => l.Date);
             return entities.Select(entity => new LogModel(entity.Id,
                     entity.Date,
                     entity.Details,

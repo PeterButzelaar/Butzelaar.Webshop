@@ -10,7 +10,7 @@ namespace Butzelaar.Webshop.Repository.Logging
     /// <summary>
     /// Generic repository for the Logging context
     /// </summary>
-    public interface ILoggingRepository : IDisposable
+    public interface ILogRepository
     {
         /// <summary>
         /// Gets the list.

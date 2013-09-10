@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,15 @@
   <ItemGroup>
     <Compile Include="Logging\LogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Webshop\BaseFullModel.cs" />
+    <Compile Include="Webshop\BaseModel.cs" />
+    <Compile Include="Webshop\Menu\MenuModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Butzelaar.Webshop.Common\Butzelaar.Webshop.Common.csproj">
+      <Project>{3C880872-72A4-4859-9324-F0D69B59CBC1}</Project>
+      <Name>Butzelaar.Webshop.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

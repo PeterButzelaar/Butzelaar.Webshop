@@ -17,12 +17,6 @@ namespace Butzelaar.Webshop.Repository.Webshop
     /// <typeparam name="TEntity">The type of the entity.</typeparam>
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : Base
     {
-        #region Fields
-
-        private bool _disposed;
-
-        #endregion
-
         #region Properties
 
         /// <summary>
@@ -134,35 +128,6 @@ namespace Butzelaar.Webshop.Repository.Webshop
         {
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
-        }
-
-        #endregion
-
-        #region Dispose
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    Context.Dispose();
-                }
-            }
-            _disposed = true;
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         #endregion

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Butzelaar.Webshop.Common.DataAnnotations;
+using Butzelaar.Webshop.Common.Resources;
 
 namespace Butzelaar.Webshop.Model.Logging
 {
@@ -56,6 +59,8 @@ namespace Butzelaar.Webshop.Model.Logging
         /// <value>
         /// The date.
         /// </value>
+        [DisplayFormat(DataFormatString = "yyyy-MM-dd")]
+        [LocalizedDisplayName("Date", NameResourceType = typeof(ModelResource))]
         public DateTime Date { get; private set; }
         /// <summary>
         /// Gets or sets the thread.

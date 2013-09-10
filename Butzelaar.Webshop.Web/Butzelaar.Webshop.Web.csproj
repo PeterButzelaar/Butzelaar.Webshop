@@ -400,6 +400,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Butzelaar.Webshop.Common\Butzelaar.Webshop.Common.csproj">
+      <Project>{3c880872-72a4-4859-9324-f0d69b59cbc1}</Project>
+      <Name>Butzelaar.Webshop.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Butzelaar.Webshop.Model\Butzelaar.Webshop.Model.csproj">
       <Project>{bcff8271-5087-4320-8903-b9701f9b3f47}</Project>
       <Name>Butzelaar.Webshop.Model</Name>
