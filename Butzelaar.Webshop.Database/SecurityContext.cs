@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Configuration;
+using System.Data.Entity;
 
 namespace Butzelaar.Webshop.Database
 {
@@ -11,7 +12,7 @@ namespace Butzelaar.Webshop.Database
         /// Initializes a new instance of the <see cref="SecurityContext"/> class.
         /// </summary>
         public SecurityContext()
-            : base("Name=Security")
+            : base(ConfigurationManager.ConnectionStrings["Security"].ConnectionString)
         {
 
         }

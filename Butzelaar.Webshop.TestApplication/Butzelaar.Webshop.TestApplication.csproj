@@ -67,13 +67,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Butzelaar.Webshop.Database\Butzelaar.Webshop.Database.csproj">
-      <Project>{1d5a1f1a-0b03-45a1-9c17-88809533f5c1}</Project>
-      <Name>Butzelaar.Webshop.Database</Name>
+    <ProjectReference Include="..\Butzelaar.Webshop.Model\Butzelaar.Webshop.Model.csproj">
+      <Project>{bcff8271-5087-4320-8903-b9701f9b3f47}</Project>
+      <Name>Butzelaar.Webshop.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Butzelaar.Webshop.Repository\Butzelaar.Webshop.Repository.csproj">
-      <Project>{5CCDA3BF-4637-4CBF-B603-EE95FF66AF23}</Project>
-      <Name>Butzelaar.Webshop.Repository</Name>
+    <ProjectReference Include="..\Butzelaar.Webshop.Service\Butzelaar.Webshop.Service.csproj">
+      <Project>{c43f8550-e7a0-41d8-a1b3-1488f5c17b90}</Project>
+      <Name>Butzelaar.Webshop.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

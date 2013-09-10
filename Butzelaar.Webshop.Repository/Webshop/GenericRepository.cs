@@ -42,7 +42,7 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// Initializes a new instance of the <see cref="GenericRepository{TEntity}"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        protected GenericRepository(WebshopContext context)
+        internal protected GenericRepository(WebshopContext context)
         {
             Context = context;
             DbSet = context.Set<TEntity>();

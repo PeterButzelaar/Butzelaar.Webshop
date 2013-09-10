@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
 using System.Data.Entity;
 using Butzelaar.Webshop.Database.Entities.Logging;
 
@@ -13,7 +14,7 @@ namespace Butzelaar.Webshop.Database
         /// Initializes a new instance of the <see cref="LoggingContext"/> class.
         /// </summary>
         public LoggingContext()
-            : base("Name=Logging")
+            : base(ConfigurationManager.ConnectionStrings["Logging"].ConnectionString)
         {
         }
 

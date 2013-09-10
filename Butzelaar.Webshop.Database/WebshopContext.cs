@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -42,7 +43,7 @@ namespace Butzelaar.Webshop.Database
         /// Initializes a new instance of the <see cref="WebshopContext"/> class.
         /// </summary>
         public WebshopContext(string username)
-            : base("Name=Webshop")
+            : base(ConfigurationManager.ConnectionStrings["Webshop"].ConnectionString)
         {
             Username = username;
         }
