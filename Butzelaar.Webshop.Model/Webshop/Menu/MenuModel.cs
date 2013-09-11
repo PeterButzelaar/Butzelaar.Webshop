@@ -11,6 +11,27 @@ namespace Butzelaar.Webshop.Model.Webshop.Menu
     /// </summary>
     public class MenuModel : BaseFullModel
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the parent unique identifier.
+        /// </summary>
+        /// <value>
+        /// The parent unique identifier.
+        /// </value>
+        public Guid? ParentId { get; set; }
+
+        #endregion
+
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuModel"/> class.
         /// </summary>
@@ -22,5 +43,7 @@ namespace Butzelaar.Webshop.Model.Webshop.Menu
         public MenuModel(Guid id, DateTime createDate, string createdBy, DateTime modifiedDate, string modifiedBy) : base(id, createDate, createdBy, modifiedDate, modifiedBy)
         {
         }
+
+        #endregion
     }
 }

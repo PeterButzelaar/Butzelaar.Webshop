@@ -10,6 +10,9 @@ using Butzelaar.Webshop.Database.Entities.Webshop;
 
 namespace Butzelaar.Webshop.Repository.Logging
 {
+    /// <summary>
+    /// The log repository
+    /// </summary>
     public class LogRepository : ILogRepository
     {
         #region Properties
@@ -46,7 +49,7 @@ namespace Butzelaar.Webshop.Repository.Logging
         /// </summary>
         /// <returns></returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public IEnumerable<Log> Get()
+        public IEnumerable<Log> GetList()
         {
             return DbSet.ToList();
         }

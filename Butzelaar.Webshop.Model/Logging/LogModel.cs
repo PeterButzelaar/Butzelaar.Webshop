@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Butzelaar.Generic.Tooling.DataAnnotations;
-using Butzelaar.Webshop.Common.DataAnnotations;
 using Butzelaar.Webshop.Common.Resources;
 
 namespace Butzelaar.Webshop.Model.Logging

@@ -53,7 +53,7 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="orderBy">The order by.</param>
         /// <param name="includeProperties">The include properties.</param>
         /// <returns></returns>
-        public IEnumerable<TEntity> Get(
+        public IEnumerable<TEntity> GetList(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeProperties = "")

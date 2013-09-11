@@ -80,7 +80,7 @@ namespace Butzelaar.Webshop.Service.Logging
         /// <exception cref="System.NotImplementedException"></exception>
         public IEnumerable<LogModel> GetLogsOrderedByDateDescending()
         {
-            var entities = LoggingRepository.Get().OrderByDescending(l => l.Date);
+            var entities = LoggingRepository.GetList().OrderByDescending(l => l.Date);
             return entities.Select(entity => new LogModel(entity.Id,
                     entity.Date,
                     entity.Details,

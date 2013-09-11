@@ -13,6 +13,8 @@ namespace Butzelaar.Webshop.Repository.Webshop
     /// </summary>
     public class MenuRepository : GenericRepository<Menu>, IMenuRepository
     {
+        #region Constructor
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuRepository"/> class.
         /// </summary>
@@ -20,5 +22,32 @@ namespace Butzelaar.Webshop.Repository.Webshop
         public MenuRepository(WebshopContext context) : base(context)
         {
         }
+
+        #endregion
+
+        #region CRUD
+
+        /// <summary>
+        /// Gets the root menus.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IEnumerable<Menu> GetRootMenus()
+        {
+            return DbSet.Where(m => m.ParentId == null).ToList();
+        }
+
+        /// <summary>
+        /// Gets the children menus from parent.
+        /// </summary>
+        /// <param name="parentId">The parent unique identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IEnumerable<Menu> GetChildrenMenusFromParent(Guid parentId)
+        {
+            return DbSet.Where(m => m.ParentId == parentId).ToList();
+        }
+
+        #endregion
     }
 }

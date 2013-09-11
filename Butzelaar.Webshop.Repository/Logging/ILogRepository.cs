@@ -16,7 +16,7 @@ namespace Butzelaar.Webshop.Repository.Logging
         /// Gets the list.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Log> Get();
+        IEnumerable<Log> GetList();
 
         /// <summary>
         /// Gets the by unique identifier.

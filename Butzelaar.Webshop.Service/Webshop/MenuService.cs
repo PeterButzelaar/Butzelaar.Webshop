@@ -1,4 +1,8 @@
-﻿using Butzelaar.Webshop.Database;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Butzelaar.Webshop.Database;
+using Butzelaar.Webshop.Model.Webshop.Menu;
 using Butzelaar.Webshop.Repository.Webshop;
 
 namespace Butzelaar.Webshop.Service.Webshop
@@ -39,7 +43,52 @@ namespace Butzelaar.Webshop.Service.Webshop
 
         #region Methods
 
+        /// <summary>
+        /// Gets the menu by unique identifier.
+        /// </summary>
+        /// <param name="id">The unique identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public MenuModel GetMenuById(Guid id)
+        {
+            var entity = _menuRepository.GetById(id);
+            return new MenuModel(entity.Id, entity.CreateDate, entity.CreatedBy, entity.ModifiedDate, entity.ModifiedBy)
+                {
+                    Name = entity.Name,
+                    ParentId = entity.ParentId
+                };
+        }
 
+        /// <summary>
+        /// Gets the root menus.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IEnumerable<MenuModel> GetRootMenus()
+        {
+            var entities = _menuRepository.GetRootMenus();
+            return entities.Select(entity => new MenuModel(entity.Id, entity.CreateDate, entity.CreatedBy, entity.ModifiedDate, entity.ModifiedBy)
+                        {
+                            Name = entity.Name,
+                            ParentId = entity.ParentId
+                        });
+        }
+
+        /// <summary>
+        /// Gets the children menus from parent.
+        /// </summary>
+        /// <param name="parentId">The parent unique identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public IEnumerable<MenuModel> GetChildrenMenusFromParent(Guid parentId)
+        {
+            var entities = _menuRepository.GetChildrenMenusFromParent(parentId);
+            return entities.Select(entity => new MenuModel(entity.Id, entity.CreateDate, entity.CreatedBy, entity.ModifiedDate, entity.ModifiedBy)
+                        {
+                            Name = entity.Name,
+                            ParentId = entity.ParentId
+                        });
+        }
 
         #endregion
 
