@@ -45,6 +45,9 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <exception cref="System.NotImplementedException"></exception>
         public IEnumerable<Menu> GetChildrenMenusFromParent(Guid parentId)
         {
+            if(parentId == Guid.Empty)
+                throw new ArgumentNullException("parentId");
+
             return DbSet.Where(m => m.ParentId == parentId).ToList();
         }
 

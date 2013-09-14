@@ -13,7 +13,6 @@ namespace Butzelaar.Webshop.Database
         /// <param name="context">The context.</param>
         protected override void Seed(LoggingContext context)
         {
-            
         }
     }
 }

@@ -36,6 +36,9 @@ namespace Butzelaar.Webshop.Repository.Logging
         /// <param name="context">The context.</param>
         public LogRepository(LoggingContext context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             Context = context;
             DbSet = context.Set<Log>();
         }
@@ -61,6 +64,9 @@ namespace Butzelaar.Webshop.Repository.Logging
         /// <returns></returns>
         public Log GetById(Guid id)
         {
+            if(id == Guid.Empty)
+                throw new ArgumentNullException("id");
+
             return DbSet.Find(id);
         }
 

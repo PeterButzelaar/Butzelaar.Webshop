@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Data.Entity;
+using Butzelaar.Generic.Logging;
+using Butzelaar.Generic.Logging.Enumeration;
 using Butzelaar.Webshop.Database.Entities.Logging;
 
 namespace Butzelaar.Webshop.Database
@@ -36,6 +38,8 @@ namespace Butzelaar.Webshop.Database
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             #region Log
+
+            Logger.Log(Level.Debug, "Mapping logging database");
 
             modelBuilder.Entity<Log>()
                         .Map(m => m.ToTable("Log"))
@@ -86,6 +90,8 @@ namespace Butzelaar.Webshop.Database
                         .IsVariableLength()
                         .IsRequired()
                         .HasMaxLength(4000);
+
+            Logger.Log(Level.Debug, "Mapped Log class");
 
             #endregion
         }

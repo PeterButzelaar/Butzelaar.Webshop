@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Web.Script.Serialization;
 using Butzelaar.Generic.Logging;
 using Butzelaar.Generic.Logging.Enumeration;
 using Butzelaar.Webshop.Database;
@@ -38,6 +39,9 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="context">The context.</param>
         internal protected GenericRepository(WebshopContext context)
         {
+            if (context == null)
+                throw new ArgumentNullException("context");
+
             Context = context;
             DbSet = context.Set<TEntity>();
         }
@@ -49,33 +53,10 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <summary>
         /// Gets the specified filter.
         /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
         /// <returns></returns>
-        public IEnumerable<TEntity> GetList(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+        public IEnumerable<TEntity> GetList()
         {
-            try
-            {
-                IQueryable<TEntity> query = DbSet;
-
-                if (filter != null)
-                {
-                    query = query.Where(filter);
-                }
-
-                query = includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-
-                return orderBy != null ? orderBy(query).ToList() : query.ToList();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(Level.Fatal, "Fatal error while fetching data from the database", String.Format("Filter: {0}, OrderBy: {1}, IncludeProperties: {2}", filter, orderBy, includeProperties), ex);
-                throw;
-            }
+            return DbSet.ToList();
         }
 
         /// <summary>
@@ -85,6 +66,10 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <returns></returns>
         public TEntity GetById(Guid id)
         {
+            if(id == Guid.Empty)
+                throw new ArgumentNullException("id");
+
+            Logger.Log(Level.Debug, "Getting entity by id", String.Format("Type: {0}, ID: {1}", typeof(TEntity), id));
             return DbSet.Find(id);
         }
 
@@ -94,7 +79,13 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="entity">The entity.</param>
         public void Add(TEntity entity)
         {
+            if(entity == null)
+                throw new ArgumentNullException("entity");
+
             DbSet.Add(entity);
+
+            var data = new JavaScriptSerializer().Serialize(entity);
+            Logger.Log(Level.Debug, "Added entity to context", String.Format("Type: {0}. Data: {1}", typeof(TEntity), data));
         }
 
         /// <summary>
@@ -103,6 +94,9 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="id">The unique identifier.</param>
         public void Delete(Guid id)
         {
+            if (id == Guid.Empty)
+                throw new ArgumentNullException("id");
+
             var entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);
         }
@@ -113,11 +107,17 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="entityToDelete">The entity automatic delete.</param>
         public virtual void Delete(TEntity entityToDelete)
         {
+            if (entityToDelete == null)
+                throw new ArgumentNullException("entityToDelete");
+
             if (Context.Entry(entityToDelete).State == EntityState.Detached)
             {
                 DbSet.Attach(entityToDelete);
             }
             DbSet.Remove(entityToDelete);
+
+            var data = new JavaScriptSerializer().Serialize(entityToDelete);
+            Logger.Log(Level.Debug, "Removed entity to context", String.Format("Type: {0}. Data: {1}", typeof(TEntity), data));
         }
 
         /// <summary>
@@ -126,8 +126,14 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <param name="entityToUpdate">The entity automatic update.</param>
         public void Update(TEntity entityToUpdate)
         {
+            if (entityToUpdate == null)
+                throw new ArgumentNullException("entityToUpdate");
+
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
+
+            var data = new JavaScriptSerializer().Serialize(entityToUpdate);
+            Logger.Log(Level.Debug, "Entity updated in context", String.Format("Type: {0}. Data: {1}", typeof(TEntity), data));
         }
 
         #endregion

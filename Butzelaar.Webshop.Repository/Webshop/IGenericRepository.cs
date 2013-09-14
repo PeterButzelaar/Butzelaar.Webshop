@@ -15,14 +15,8 @@ namespace Butzelaar.Webshop.Repository.Webshop
         /// <summary>
         /// Gets the list.
         /// </summary>
-        /// <param name="filter">The filter.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="includeProperties">The include properties.</param>
         /// <returns></returns>
-        IEnumerable<TEntity> GetList(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
+        IEnumerable<TEntity> GetList();
         /// <summary>
         /// Gets the by unique identifier.
         /// </summary>

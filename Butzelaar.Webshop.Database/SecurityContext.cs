@@ -14,7 +14,6 @@ namespace Butzelaar.Webshop.Database
         public SecurityContext()
             : base(ConfigurationManager.ConnectionStrings["Security"].ConnectionString)
         {
-
         }
     }
 }
